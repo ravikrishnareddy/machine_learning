@@ -27,3 +27,12 @@ def isiterable(obj):
 isiterable('foo')
 isiterable([1, 2, 3])
 isiterable(5)
+
+# Python built-in sorted function
+a = [1, 2, 5, 4, 3]
+b = 1, 2, 5, 4, 3
+c = {'a':1, 'b':2, 'e':5, 'd':4, 'c':3}
+
+print(sorted(a))
+print(sorted(b))
+print(sorted(c))
