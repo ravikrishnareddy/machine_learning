@@ -83,3 +83,5 @@ for l, r in brics.iterrows():
 for l, r in brics.iterrows():
     brics.loc[l, 'country_length'] = len(r['country'])
 display(brics)
+
+# Test code
