@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_boston
+from sklearn.preprocessing import PolynomialFeatures
 import statsmodels.formula.api as smf
 import seaborn as sns
 
@@ -32,3 +33,19 @@ rstandard = lm_fit.get_influence().resid_studentized_internal
 rstudent = lm_fit.get_influence().resid_studentized_external
 
 sns.scatterplot(x = hatvalues, y = abs(rstudent))
+
+# Plot residuals against fitted values
+sns.scatterplot(x = lm_fit.fittedvalues, y = lm_fit.resid)
+
+# Plot studentized residuas against fitted values
+sns.scatterplot(x = lm_fit.fittedvalues, y = abs(lm_fit.get_influence().resid_studentized_external))
+
+# Plot leverage statistic again fitted values
+sns.scatterplot(x = lm_fit.fittedvalues, y = lm_fit.get_influence().hat_matrix_diag)
+
+
+###
+# Residual plot confirms a non-linear relationship
+
+lm_fit_poly = smf.ols('medv ~ np.vander(LSTAT, 5)', data = boston).fit()
+lm_fit_poly.summary()
